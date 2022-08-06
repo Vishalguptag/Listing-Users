@@ -26,26 +26,34 @@ const ShowUsersInTable = (props) => {
     setUserLimit(userLimit + 10)
   }
   return (
-    <>
-      <Table hover className="text-center">
-        <thead className="table-light border-none bg-light">
+    <div className="position-relative mx-3">
+      <Table hover className="my-4">
+        <thead className="table-light border-none bg-gray-400 sticky-top text-sm">
           <tr>
-            <th scope="col">S.no</th>
-            <th scope="col">USER</th>
-            <th scope="col">JOIN AT</th>
-            <th scope="col">ACTIONS</th>
+            <th scope="col" className="font-sans font-normal">
+              S.NO
+            </th>
+            <th scope="col" className="font-normal">
+              USER
+            </th>
+            <th scope="col" className="font-normal">
+              JOIN AT
+            </th>
+            <th scope="col" className="text-end font-normal">
+              ACTIONS
+            </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-sm font-sans">
           {/* Checking userData is Null or Not */}
           {slicedData ? (
             slicedData.map((item) => (
               // Passing The Data  as Props to Child Component
               <tr key={item.id}>
-                <th scope="row">{item.id}</th>
+                <td>{item.id}</td>
                 <td>{item.name}</td>
                 <td>{item.date}</td>
-                <td>
+                <td className="text-end">
                   {/* Pasing Data as Props to Child Components */}
                   <ConfirmModalForDelete
                     deleteId={item.id}
@@ -69,7 +77,7 @@ const ShowUsersInTable = (props) => {
           Load More
         </Button>
       </div>
-    </>
+    </div>
   )
 }
 

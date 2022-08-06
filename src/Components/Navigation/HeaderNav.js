@@ -1,6 +1,9 @@
 // Packages
 import React from 'react'
 
+// React icon
+import { MdKeyboardArrowLeft } from 'react-icons/md'
+
 // React-bootstrap Components
 import Navbar from 'react-bootstrap/Navbar'
 import ModalButton from '../../View/AddModal/ModalButton'
@@ -16,10 +19,11 @@ const HeaderNav = (props) => {
   // Destsructring Data with Validating
   const { userData, userUpdate } = props || []
   return (
-    <Navbar>
+    <Navbar className="border-y-2">
       <Navbar expand="lg" variant="light">
+        <MdKeyboardArrowLeft className="font-extrabold text-3xl text-gray-700 mx-1" />
         {/* Title of the App */}
-        <h1 className="mx-3 text-2xl">{NavBarTitle}</h1>
+        <h1 className="mx-1 text-2xl font-sans">{NavBarTitle}</h1>
       </Navbar>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
