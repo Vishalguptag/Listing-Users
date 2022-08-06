@@ -53,7 +53,7 @@ const AddModalButton = (props) => {
       <Button
         variant="primary"
         onClick={handleShow}
-        className="bg-primary mx-3"
+        className="bg-sky-600 mx-3"
       >
         Add New User
       </Button>
@@ -82,7 +82,7 @@ const AddModalButton = (props) => {
           <Button
             variant="primary"
             onClick={postNewUser}
-            className="bg-primary"
+            className="bg-sky-600"
           >
             Save
           </Button>

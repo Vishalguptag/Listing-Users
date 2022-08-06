@@ -16,19 +16,19 @@ const ShowUsersInTable = (props) => {
   // Destructring props with Validating
   const { userData, userUpdate } = props || []
   // states
-  const [userLimit, setUserLimit] = useState(4)
+  const [userLimit, setUserLimit] = useState(10)
   const slicedData = userData.slice(0, userLimit)
 
   /**
    * Use to Handel Load More Button
    */
   const HandelLoadMoreBtn = () => {
-    setUserLimit(userLimit + 4)
+    setUserLimit(userLimit + 10)
   }
   return (
     <>
-      <Table striped bordered hover className="text-center">
-        <thead className="table-light">
+      <Table hover className="text-center">
+        <thead className="table-light border-none bg-light">
           <tr>
             <th scope="col">S.no</th>
             <th scope="col">USER</th>
@@ -64,7 +64,7 @@ const ShowUsersInTable = (props) => {
         <Button
           variant="primary"
           onClick={HandelLoadMoreBtn}
-          className="bg-primary"
+          className="bg-sky-600"
         >
           Load More
         </Button>

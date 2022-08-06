@@ -17,9 +17,9 @@ const HeaderNav = (props) => {
   const { userData, userUpdate } = props || []
   return (
     <Navbar>
-      <Navbar expand="lg" variant="light" bg="light">
+      <Navbar expand="lg" variant="light">
         {/* Title of the App */}
-        <h1 className="mx-3">{NavBarTitle}</h1>
+        <h1 className="mx-3 text-2xl">{NavBarTitle}</h1>
       </Navbar>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
