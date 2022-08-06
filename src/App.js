@@ -1,9 +1,9 @@
+// Packages
 import React from 'react'
 
-const App = () => (
-  <div className="App">
-    <h1>Hello</h1>
-  </div>
-)
+// Components
+import Dashboard from './View/Dashboard'
+
+const App = () => <Dashboard />
 
 export default App
