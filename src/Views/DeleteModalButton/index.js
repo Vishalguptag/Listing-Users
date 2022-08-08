@@ -1,5 +1,4 @@
 // Packages
-import axios from 'axios'
 import React, { useState } from 'react'
 
 // React-bootstrap Components
@@ -7,7 +6,13 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
 // React Icon
-import { RiDeleteBin5Fill } from 'react-icons/ri'
+import { RiDeleteBin6Line } from 'react-icons/ri'
+
+// Service
+import { deleteParticularUser } from '../../Services/User'
+
+// Css File
+import './index.css'
 
 /**
  * Modal is use For Confirmation to delete Particular User
@@ -20,62 +25,53 @@ const ConfirmModalForDelete = (props) => {
   const [deleteUserId, setDeleteUserId] = useState(0)
 
   // desstruring props and Validating
-  const { deleteId, userData, userUpdate } = props || {}
+  const { deleteId, userData, onUserUpdate } = props || {}
 
   // Methods use to Handel the Modal
   const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
-
+  const handleShow = () => {
+    setShow(true)
+    setDeleteUserId(deleteId)
+  }
   /**
-   * Method use for  Delete user
+   * Method use for  Delete Particular user
    */
-  const deleteUser = async () => {
-    await axios
-      .delete(`http://localhost:8000/users/${deleteUserId}`)
-      .then(() => {
-        // filtering Data on the basis of deleted user
-        const filteredData = userData.filter((item) => item.id !== deleteUserId)
-
-        // Updating state with filered Data
-        userUpdate(filteredData)
-      })
+  const handelDeleteUser = async () => {
+    const respnonseResult = await deleteParticularUser(deleteId, userData)
+    onUserUpdate(respnonseResult)
     setShow(false)
   }
   return (
     <>
-      <Button variant="" onClick={handleShow} className="text-black">
-        <RiDeleteBin5Fill
-          // Event to set the state with deleted user id
-          onClick={() => {
-            setDeleteUserId(deleteId)
-          }}
-        />
-      </Button>
+      <RiDeleteBin6Line
+        onClick={handleShow}
+        className="float-right cursor-pointer"
+      />
 
       <Modal show={show} onHide={handleClose} animation={false} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Add New User</Modal.Title>
+          <Modal.Title>Confirmation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>You are about to delete this user ? Click Proceed to Confirm</p>
         </Modal.Body>
         <Modal.Footer>
           <Button
-            variant="secondary"
-            onClick={handleClose}
-            className="bg-black"
-          >
-            Cancel
-          </Button>
-          <Button
             variant="primary"
             onClick={() => {
               // Calling Method to Delete Particular User
-              deleteUser(deleteUserId)
+              handelDeleteUser(deleteUserId)
             }}
-            className="bg-sky-400"
+            className="proceedBtn"
           >
-            Proceed
+            PROCEED
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={handleClose}
+            className="cancelBtn"
+          >
+            CANCEL
           </Button>
         </Modal.Footer>
       </Modal>

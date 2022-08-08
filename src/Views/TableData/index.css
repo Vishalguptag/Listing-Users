@@ -1,0 +1,15 @@
+.theadOfUser{
+    background-color:#f7f8fd;
+    font-family: ‘Roboto’, sans-serif;
+    font-weight: 300;
+    font-size: medium;
+}
+.loadMore{
+    background-color: #428bca;
+}
+.tableBody{
+    font-family: ‘Roboto’,sans-serif;
+}
+td{
+    height: 60px;
+}

@@ -6,7 +6,10 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 
 // Components
-import ConfirmModalForDelete from '../DeleteModal/ConfirmModalForDelete'
+import ConfirmModalForDelete from '../DeleteModalButton'
+
+// Css File
+import './index.css'
 
 /**
  * Display List of Users using React-bootstrap table
@@ -14,9 +17,12 @@ import ConfirmModalForDelete from '../DeleteModal/ConfirmModalForDelete'
  */
 const ShowUsersInTable = (props) => {
   // Destructring props with Validating
-  const { userData, userUpdate } = props || []
+  const { userData, onUserUpdate } = props || []
+
   // states
   const [userLimit, setUserLimit] = useState(10)
+
+  // Slicing Data by Limit
   const slicedData = userData.slice(0, userLimit)
 
   /**
@@ -28,13 +34,13 @@ const ShowUsersInTable = (props) => {
   return (
     <div className="position-relative mx-3">
       <Table hover className="my-4">
-        <thead className="table-light border-none bg-gray-400 sticky-top text-sm">
+        <thead className="border-none text-sm tracking-widest theadOfUser">
           <tr>
             <th scope="col" className="font-sans font-normal">
               S.NO
             </th>
             <th scope="col" className="font-normal">
-              USER
+              USERS
             </th>
             <th scope="col" className="font-normal">
               JOIN AT
@@ -44,7 +50,7 @@ const ShowUsersInTable = (props) => {
             </th>
           </tr>
         </thead>
-        <tbody className="text-sm font-sans">
+        <tbody className="font-sans align-middle tableBody font-medium fs-6">
           {/* Checking userData is Null or Not */}
           {slicedData ? (
             slicedData.map((item) => (
@@ -53,12 +59,12 @@ const ShowUsersInTable = (props) => {
                 <td>{item.id}</td>
                 <td>{item.name}</td>
                 <td>{item.date}</td>
-                <td className="text-end">
+                <td>
                   {/* Pasing Data as Props to Child Components */}
                   <ConfirmModalForDelete
                     deleteId={item.id}
                     userData={userData}
-                    userUpdate={userUpdate}
+                    onUserUpdate={onUserUpdate}
                   />
                 </td>
               </tr>
@@ -68,11 +74,11 @@ const ShowUsersInTable = (props) => {
           )}
         </tbody>
       </Table>
-      <div className="d-flex flex-row justify-content-center sticky-bottom bg-light p-2">
+      <div className="d-flex flex-row justify-content-center sticky-bottom bg-white p-1">
         <Button
           variant="primary"
           onClick={HandelLoadMoreBtn}
-          className="bg-sky-600"
+          className="loadMore"
         >
           Load More
         </Button>

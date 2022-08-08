@@ -1,3 +1,3 @@
 // Title of the Navbar
-const NavBarTitle = 'WEBHOOKS'
+const NavBarTitle = 'USER LISTING'
 export default NavBarTitle

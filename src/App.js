@@ -2,8 +2,8 @@
 import React from 'react'
 
 // Components
-import Dashboard from './View/Dashboard'
+import UserList from './Views/UserList'
 
-const App = () => <Dashboard />
+const App = () => <UserList />
 
 export default App

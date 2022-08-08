@@ -1,40 +1,43 @@
 // Packages
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 
 // Components
 import Navbar from '../Components/Navigation/HeaderNav'
 import ShowUsersInTable from './TableData'
 
+// Service
+import { fetchUserList } from '../Services/User'
+
 /**
  * Dashboard Page use to Display Different Components
  * @returns Node
  */
-const ShowUser = () => {
+const UserList = () => {
   // State
   const [resUserData, setResUserData] = useState([])
 
   /**
    * Method is use for get the List of Users
    */
-  const getUserInfo = () => {
-    axios.get('http://localhost:8000/users').then((res) => {
-      setResUserData(res.data)
-    })
+  const getUserList = async () => {
+    const respnonseResult = await fetchUserList()
+    setResUserData(respnonseResult)
   }
-  // use to Call Method Once
+
+  // Component will mount
   useEffect(() => {
-    getUserInfo()
+    // Method to call user list
+    getUserList()
   }, [])
   return (
     <>
       {/* Passing Data as Props to NavBar Components */}
-      <Navbar userData={resUserData} userUpdate={setResUserData} />
+      <Navbar userData={resUserData} onUserUpdate={setResUserData} />
 
       {/* Passing Data as props to Table Components so Display No of Users */}
-      <ShowUsersInTable userData={resUserData} userUpdate={setResUserData} />
+      <ShowUsersInTable userData={resUserData} onUserUpdate={setResUserData} />
     </>
   )
 }
 
-export default ShowUser
+export default UserList
